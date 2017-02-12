@@ -2,3 +2,5 @@
 *.model
 *.model.txt
 *.pmml
+*.libsvm
+prepare_blocked_tds.scala
