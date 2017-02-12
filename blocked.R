@@ -16,6 +16,10 @@ xgb_cv = xgb.cv(param, dtrain, nround, nfold=5)
 
 model <- xgb.train(data = dtrain, nrounds = nround, watchlis = list(train=dtrain, test=dtest), verbose = 1, eval_metric = "auc", eval_metric = "error")
 
+pred <- predict(model, dtest)
+err <- mean(as.numeric(pred > 0.5) != getinfo(dtest, 'label'))
+print(paste("test-error=", err))
+
 importance_matrix <- xgb.importance(model = model)
 print(importance_matrix)
 xgb.plot.importance(importance_matrix = importance_matrix)
